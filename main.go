@@ -8,6 +8,8 @@ import (
 	"fmt"
 	"os"
 
+	n26 "github.com/PAF13/com_n26"
+	neondb "github.com/PAF13/com_neondb"
 	tea "github.com/charmbracelet/bubbletea"
 )
 
@@ -117,5 +119,5 @@ func main() {
 	if false {
 		temp()
 	}
-	n26.importFile("C:\\Users\\Administrator\\dev\\com_n26\\N26_report.csv")
+	neondb.N26Upload(n26.ImportFile(`C:\Users\Administrator\dev\00_files\N26_report.csv`))
 }
