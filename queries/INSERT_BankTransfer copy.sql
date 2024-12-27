@@ -1,8 +1,16 @@
-INSERT INTO public.transactions_n26 
-    (bookingdate, valuedate, partnername, partneriban, typess, 
-     paymentreference, accountname, amounteur, originalamount, 
-     originalcurrency, exchangerate)
-VALUES 
-    (CURRENT_DATE, CURRENT_DATE, 'New Partner', 'DE89370400440532013000', 
-     'Transfer', 'Payment reference', 'Main Account', 100.00, 100.00, 
-     'EUR', 1.000000)
+CREATE TABLE todo_list (
+    id SERIAL PRIMARY KEY,
+        title VARCHAR(255) NOT NULL,
+            description TEXT,
+                status VARCHAR(20) DEFAULT 'pending' CHECK (status IN ('pending', 'in progress', 'completed')),
+                    priority VARCHAR(10) DEFAULT 'medium' CHECK (priority IN ('low', 'medium', 'high')),
+                        due_date TIMESTAMP,
+                            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                                    completed_at TIMESTAMP,
+                                        user_id INTEGER,
+                                            tags TEXT,
+                                                recurring VARCHAR(10) DEFAULT 'none' CHECK (recurring IN ('none', 'daily', 'weekly', 'monthly')),
+                                                    attachments TEXT,
+                                                        is_deleted BOOLEAN DEFAULT FALSE,
+                                                            )
