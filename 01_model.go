@@ -56,10 +56,21 @@ func (d itemDelegate) Render(w io.Writer, m list.Model, index int, listItem list
  */
 type appUI struct {
 	mainMenu list.Model
-	bank     string
-	calendar string
-	todo     string
-	notes    string
 	choice   int
 	quitting bool
+
+	vim      vim
+	bank     bank
+	calendar calendar
+	todo     todo
+	notes    notes
 }
+
+type vim struct {
+	mode string
+}
+
+type bank struct{}
+type calendar struct{}
+type todo struct{}
+type notes struct{}

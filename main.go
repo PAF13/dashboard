@@ -5,6 +5,7 @@ import (
 	"log"
 	"os"
 
+	neondb "github.com/PAF13/com_neondb"
 	"github.com/PAF13/dashboard/ui/httpserver"
 	"github.com/charmbracelet/bubbles/list"
 	tea "github.com/charmbracelet/bubbletea"
@@ -23,6 +24,14 @@ var (
 )
 
 func main() {
+	neondb.GetTrans()
+
+	if false {
+		tempFunc()
+	}
+}
+
+func tempFunc() {
 	// Start logging server
 	logBuf := &httpserver.LogBuffer{}
 	log.SetOutput(logBuf) // Redirect log output to the buffer.

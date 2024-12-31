@@ -24,8 +24,8 @@ go.work.sum
 # env file
 .env
 
-
+temp/
 credentials.json
 APIKeys.json
 test.jsons
-build
+build/
