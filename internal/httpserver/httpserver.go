@@ -21,19 +21,6 @@ func (lb *LogBuffer) Write(p []byte) (n int, err error) {
 	return len(p), nil
 }
 
-/*
-func (lb *LogBuffer) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	initLogSize := len(lb.logs)
-	w.Write([]byte("----connected----\n"))
-	w.Write([]byte("Nummber of Logs: " + strconv.Itoa(initLogSize) + "\n"))
-	lb.mu.Lock()
-	defer lb.mu.Unlock()
-	for _, logLine := range lb.logs {
-		w.Write([]byte(logLine))
-	}
-}
-*/
-
 // Add a method to stream logs as Server-Sent Events (SSE).
 func (lb *LogBuffer) ServeSSE(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "text/event-stream")

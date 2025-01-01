@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"time"
 
-	neondb "github.com/PAF13/com_neondb"
-	"github.com/PAF13/dashboard/ui/httpserver"
+	"github.com/PAF13/dashboard/internal/httpserver"
 	"github.com/charmbracelet/bubbles/list"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/lipgloss"
@@ -24,7 +24,15 @@ var (
 )
 
 func main() {
-	neondb.GetTrans()
+	//neondb.GetTrans()
+	// Start logging server
+	log.Println("starting")
+	logBuf := &httpserver.LogBuffer{}
+	log.SetOutput(logBuf) // Redirect log output to the buffer.
+	go httpserver.Server(logBuf)
+
+	log.Println("moving on")
+	time.Sleep(1000 * time.Second)
 
 	if false {
 		tempFunc()
@@ -32,10 +40,6 @@ func main() {
 }
 
 func tempFunc() {
-	// Start logging server
-	logBuf := &httpserver.LogBuffer{}
-	log.SetOutput(logBuf) // Redirect log output to the buffer.
-	go httpserver.Server(logBuf)
 
 	items := newItems()
 
@@ -55,4 +59,5 @@ func tempFunc() {
 		fmt.Println("Error running program:", err)
 		os.Exit(1)
 	}
+
 }
